@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.is;
 public class CheckDeleteUser {
 
     DeleteUser deleteUser = new DeleteUser();
-    UserInfo userInfo = new UserInfo();
+    CheckUserInfo checkUserInfo = new CheckUserInfo();
 
     public void checkDeleteUser () {
 
@@ -22,6 +22,6 @@ public class CheckDeleteUser {
         step("Проверка получения кода 200", () -> assertThat(code, is("200")));
         step("Проверка получения идентификатора пользователя", () -> assertThat(message, is(userName)));
 
-        userInfo.getErrorMessage(userName);
+        checkUserInfo.checkErrorMessage(userName);
     }
 }
