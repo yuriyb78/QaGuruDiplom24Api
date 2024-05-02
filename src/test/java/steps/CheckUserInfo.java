@@ -1,64 +1,28 @@
 package steps;
 
-import models.CreateUserResponseModel;
-import models.GetUserInfoModel;
-
 import java.util.Map;
 
 import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-import static java.lang.String.format;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static specs.RequestSpec.*;
 
 public class CheckUserInfo {
-    CreateUser createUser = new CreateUser();
 
-    public void getUserInfo () {
+    UserInfo userInfo = new UserInfo();
 
-        Map<String, String> values = createUser.createUser();
+    public void checkUserInfo () {
 
-        String id = values.get("id"),
-             userName =  values.get("login"),
-             firstName = values.get("firstName"),
-             lastName = values.get("lastName"),
-             email =  values.get("email"),
-             phone = values.get("phone");
+        Map<String, String> values = userInfo.getUserInfo();
 
-        String requestEndPoint =  format("/user/%s",userName);
-
-        GetUserInfoModel response = step("Отправляю запроса информации о пользователе", () ->
-                given(requestSpec)
-                        .when()
-                        .get(requestEndPoint)
-                        .then()
-                        .spec(successfulResponseSpec)
-                        .body(matchesJsonSchemaInClasspath("schemas/getUserInfoSchema.json"))
-                        .extract().as(GetUserInfoModel.class)
-        );
-
-        step("Проверяю идентификатор пользователя", () -> assertThat(response.getId(), is(id)));
-        step("Проверяю имя пользователя", () -> assertThat(response.getFirstName(), is(firstName)));
-        step("Проверяю фамилию пользователя", () -> assertThat(response.getLastName(), is(lastName)));
-        step("Проверяю электронную почту пользователя", () -> assertThat(response.getEmail(), is(email)));
-        step("Проверяю номер телефона пользователя", () -> assertThat(response.getPhone(), is(phone)));
+        step("Проверяю идентификатор пользователя", () -> assertThat(values.get("responseId"), is(values.get("id"))));
+        step("Проверяю имя пользователя", () -> assertThat(values.get("responseFirstName"), is(values.get("firstName"))));
+        step("Проверяю фамилию пользователя", () -> assertThat(values.get("responseLastName"), is(values.get("lastName"))));
+        step("Проверяю электронную почту пользователя", () -> assertThat(values.get("responseEmail"), is(values.get("email"))));
+        step("Проверяю номер телефона пользователя", () -> assertThat(values.get("responsePhone"), is(values.get("phone"))));
     }
 
-    public void getErrorMessage (String userName) {
-
-        String requestEndPoint =  format("/user/%s",userName);
-
-        CreateUserResponseModel response = step("Отправляю запроса информации о пользователе", () ->
-                given(requestSpec)
-                        .when()
-                        .get(requestEndPoint)
-                        .then()
-                        .spec(errorResponseSpec)
-                        .extract().as(CreateUserResponseModel.class));
-
+    public void checkErrorMessage (String userName) {
         step("Проверяю сообщение об ошибке 'User not Found'",
-                () -> assertThat(response.getMessage(), is("User not found")));
+                () -> assertThat(userInfo.getErrorMessage(userName), is("User not found")));
     }
 }

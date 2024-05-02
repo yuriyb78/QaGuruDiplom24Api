@@ -27,7 +27,7 @@ public class UserAccountTest extends BaseTest {
     @Feature("Тесты для API на сайте https://petstore.swagger.io/")
     @DisplayName("Проверка получения информации о пользователе")
     void checkGetUserInfoTest () {
-        checkUserInfo.getUserInfo();
+        checkUserInfo.checkUserInfo();
 
     }
 
@@ -50,7 +50,7 @@ public class UserAccountTest extends BaseTest {
     @Feature("Тесты для API на сайте https://petstore.swagger.io/")
     @DisplayName("Негативный тест. Проверка сообщения об ошибке при поиске несуществующего пользователя")
     void checkMessageUserNotFound () {
-        checkUserInfo.getErrorMessage(loginConfig.userName());
+        checkUserInfo.checkErrorMessage(loginConfig.userName());
 
     }
 
