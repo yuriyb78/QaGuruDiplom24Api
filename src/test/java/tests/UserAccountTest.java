@@ -1,20 +1,21 @@
 package tests;
 
 
+import config.LoginConfig;
 import io.qameta.allure.Feature;
 
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import steps.CheckCreateUser;
-import steps.CheckUpdateUser;
-import steps.CheckUser;
+import steps.*;
 
 
 public class UserAccountTest extends BaseTest {
 
+    CheckUserInfo checkUserInfo = new CheckUserInfo();
+    LoginConfig loginConfig = ConfigFactory.create(LoginConfig.class);
+
     @Test
-    @Tag("User tests")
     @Feature("Тесты для API на сайте https://petstore.swagger.io/")
     @DisplayName("Проверка успешного создания пользователя")
     void checkCreateUserTest () {
@@ -23,20 +24,34 @@ public class UserAccountTest extends BaseTest {
     }
 
     @Test
-    @Tag("User tests")
     @Feature("Тесты для API на сайте https://petstore.swagger.io/")
     @DisplayName("Проверка получения информации о пользователе")
     void checkGetUserInfoTest () {
-        new CheckUser().getUserInfo();
+        checkUserInfo.getUserInfo();
 
     }
 
     @Test
-    @Tag("User tests")
     @Feature("Тесты для API на сайте https://petstore.swagger.io/")
     @DisplayName("Проверка обновления информации о пользователе")
     void checkUpdateUserInfo () {
         new CheckUpdateUser().checkUpdateUserInfo();
 
     }
+
+    @Test
+    @Feature("Тесты для API на сайте https://petstore.swagger.io/")
+    @DisplayName("Проверка удаления пользователя")
+    void checkDeleteUser () {
+        new CheckDeleteUser().checkDeleteUser();
+
+    }
+    @Test
+    @Feature("Тесты для API на сайте https://petstore.swagger.io/")
+    @DisplayName("Негативный тест. Проверка сообщения об ошибке при поиске несуществующего пользователя")
+    void checkMessageUserNotFound () {
+        checkUserInfo.getErrorMessage(loginConfig.userName());
+
+    }
+
 }

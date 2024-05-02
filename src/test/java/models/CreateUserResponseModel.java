@@ -7,5 +7,4 @@ public class CreateUserResponseModel {
 
     String code, type, message;
 
-
 }

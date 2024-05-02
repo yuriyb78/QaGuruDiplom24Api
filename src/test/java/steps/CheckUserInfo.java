@@ -1,5 +1,6 @@
 package steps;
 
+import models.CreateUserResponseModel;
 import models.GetUserInfoModel;
 
 import java.util.Map;
@@ -10,10 +11,9 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static java.lang.String.format;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static specs.RequestSpec.requestSpec;
-import static specs.RequestSpec.successfulResponseSpec;
+import static specs.RequestSpec.*;
 
-public class CheckUser {
+public class CheckUserInfo {
     CreateUser createUser = new CreateUser();
 
     public void getUserInfo () {
@@ -44,5 +44,21 @@ public class CheckUser {
         step("Проверяю фамилию пользователя", () -> assertThat(response.getLastName(), is(lastName)));
         step("Проверяю электронную почту пользователя", () -> assertThat(response.getEmail(), is(email)));
         step("Проверяю номер телефона пользователя", () -> assertThat(response.getPhone(), is(phone)));
+    }
+
+    public void getErrorMessage (String userName) {
+
+        String requestEndPoint =  format("/user/%s",userName);
+
+        CreateUserResponseModel response = step("Отправляю запроса информации о пользователе", () ->
+                given(requestSpec)
+                        .when()
+                        .get(requestEndPoint)
+                        .then()
+                        .spec(errorResponseSpec)
+                        .extract().as(CreateUserResponseModel.class));
+
+        step("Проверяю сообщение об ошибке 'User not Found'",
+                () -> assertThat(response.getMessage(), is("User not found")));
     }
 }
