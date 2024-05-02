@@ -7,8 +7,8 @@ public class BaseTest {
 
     @BeforeAll
     static void setUp () {
-        RestAssured.baseURI = "https://reqres.in";
-        RestAssured.basePath = "/api";
+        RestAssured.baseURI = "https://petstore.swagger.io";
+        RestAssured.basePath = "/v2";
     }
 
 
