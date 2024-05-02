@@ -22,15 +22,18 @@ public class GenUserData {
         return faker.number().digits(10);
     }
 
-    public static String getRandomLoginName () { return faker.name().name();
+    public static String getRandomLoginName () { return faker.name().username();
     }
 
     public static String getRandomPassword () {
         return faker.number().digits(8);
     }
 
-    public static String getRandomId () {
-        return faker.number().digits(8);
+    public static Integer getRandomId () {
+        int min = 10000000;
+        int max = 99999999;
+        int randomId = faker.number().numberBetween(min,max);
+        return randomId;
     }
 
 }

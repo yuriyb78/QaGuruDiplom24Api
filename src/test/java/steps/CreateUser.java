@@ -14,14 +14,15 @@ import static specs.RequestSpec.successfulResponseSpec;
 
 public class CreateUser {
 
+    TestData testData = new TestData();
+    CreateUserModel userData = new CreateUserModel();
+
     public Map<String, String> createUser () {
 
-        TestData testData = new TestData();
-        CreateUserModel userData = new CreateUserModel();
         Map<String, String> responseServer = new HashMap<>();
 
         step("Генерирую идентификатор пользователя", () -> userData.setId(testData.id));
-        step("Генерирую логин пользователя", () -> userData.setUsername(testData.firstName));
+        step("Генерирую логин пользователя", () -> userData.setUsername(testData.loginName));
         step("Генерирую имя пользователя", () -> userData.setFirstName(testData.firstName));
         step("Генерирую фамилию пользователя", () -> userData.setLastName(testData.lastName));
         step("Генерирую адрес электронной почты пользователя", () -> userData.setEmail(testData.emailAddress));
@@ -30,7 +31,7 @@ public class CreateUser {
         step("Устанавливаю статус пользователя", () -> userData.setUserStatus("0"));
 
 
-        CreateUserResponseModel response = step("Отправка данных пользователя для регистрации", () ->
+        CreateUserResponseModel response = step("Отправляю данные пользователя для регистрации", () ->
                 given(requestSpec)
                         .body(userData)
                         .when()
@@ -39,6 +40,15 @@ public class CreateUser {
                         .spec(successfulResponseSpec)
                         .extract().as(CreateUserResponseModel.class)
         );
+
+        responseServer.put("id", userData.getId());
+        responseServer.put("login",userData.getUsername());
+        responseServer.put("firstName",userData.getFirstName());
+        responseServer.put("lastName", userData.getLastName());
+        responseServer.put("email", userData.getEmail());
+        responseServer.put("phone", userData.getPhone());
+        responseServer.put("password", userData.getPassword());
+        responseServer.put("userStatus", userData.getUserStatus());
 
         responseServer.put("code",response.getCode());
         responseServer.put("message",response.getMessage());

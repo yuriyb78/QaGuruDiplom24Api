@@ -10,7 +10,6 @@ public class TestData {
             phoneNumber = GenUserData.getRandomPhoneNumber(),
             loginName = GenUserData.getRandomLoginName(),
             password = GenUserData.getRandomPassword(),
-            id = GenUserData.getRandomId();
-
+            id = GenUserData.getRandomId().toString();
 
 }
