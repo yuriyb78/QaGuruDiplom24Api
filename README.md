@@ -45,6 +45,8 @@
 
 Содержание Allure-отчета:
 * Шаги теста;
+* Запрос на сервер
+* Ответ сервера
 
 <a id="cases"></a>
 ## Реализованные проверки
@@ -63,26 +65,18 @@ gradle clean test
 
 ### Запуск тестов из Jenkins (с указанием параметров)
 ```
-clean
-${TYPETEST}
-"-Dbrowser.name=${BROWSER}"
-"-Dbrowser.version=${BROWSER_VERSION}"
-"-Dbrowser.size=${BROWSER_SIZE}"
-"-Dbrowser.url=${RMT_BROWSER_URL}"
+clean ${TYPETEST}
 ```
 
 ### Параметры сборки
 
 * <code>TYPETEST</code> - выбор тестируемой функциональности
     1. Test- запуск всех тестов в проекте
-    2. Mainpage - тестирование главной страницы
-    3. Catalog - тестирование каталога
-    4. Basket  - тестирование работы с Корзиной
-    5. Favorites - тестирование работы с Избранным
-* <code>RMT_BROWSER_URL</code> – адрес удаленного сервера, на котором будут запускаться тесты. По умолчанию – <code>https://user1:1234@selenoid.autotests.cloud/wd/hub</code>
-* <code>BROWSER</code> – браузер, в котором будут выполняться тесты. По умолчанию – <code>chrome</code>.
-* <code>BROWSER_VERSION</code> – версия браузера, в которой будут выполняться тесты. По умолчанию – <code>100.0</code>.
-* <code>BROWSER_SIZE</code> – размер окна браузера, в котором будут выполняться тесты. По умолчанию – <code>1920x1080</code>.
+    2. Create - Проверка создания пользователя
+    3. Info - Проверка получения информации о пользователе
+    4. Update  - Проверка обновления информации о пользователе
+    5. Delete - Проверка удаления пользователя
+    6. Error - Негативный тест: проверка получение сообщения об ошибке при запросе информации о несуществующем пользователе
 
 ## <img width="4%" style="vertical-align:middle" title="Jenkins" src="media/logos/Jenkins.svg"> [Сборка](https://jenkins.autotests.cloud/job/C24-yuriy_belyaev-HomeWorkUnit17/) в Jenkins
 

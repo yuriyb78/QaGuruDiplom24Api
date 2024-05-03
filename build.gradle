@@ -54,3 +54,33 @@ tasks.withType(Test) {
         }
     }
 }
+
+task create (type: Test) {
+    useJUnitPlatform {
+        includeTags("CreateUser")
+    }
+}
+
+task info (type: Test) {
+    useJUnitPlatform {
+        includeTags("CheckUserInfo")
+    }
+}
+
+task update (type: Test) {
+    useJUnitPlatform {
+        includeTags("UpdateUserInfo")
+    }
+}
+
+task detete (type: Test) {
+    useJUnitPlatform {
+        includeTags("DeleteUser")
+    }
+}
+
+task error (type: Test) {
+    useJUnitPlatform {
+        includeTags("CheckErrorMessage")
+    }
+}
