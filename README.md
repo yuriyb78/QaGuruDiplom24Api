@@ -1,7 +1,4 @@
-# Проект по автоматизации тестовых сценариев для сайта SOKOLOV
-<p align="center">
-<a href="https://sokolov.ru/"><img width="50% title="Логотип SOKOLOV" src="https://prmqd.ru/storage/NRpyVlwL7QYbjX6AA0eMkOhpPKmTEIUylAqfll8O.jpg"></a>
-</p>
+# Проект по автоматизации тестовых сценариев для API
 
 ## :scroll: Содержание:
 
@@ -12,7 +9,19 @@
 - [Интеграция с Allure TestOps](#-интеграция-с-allure-testOps)
 - [Интеграция с Jira](#-интеграция-с-jira)
 - [Уведомления в Telegram](#-уведомления-в-telegram)
-- [Видео примера запуска тестов в Selenoid](#-видео-примера-запуска-теста-в-selenoid)
+
+<a id="annotation"></a>
+## Описание
+Тестовый проект состоит из веб-тестов (UI), тестов API и мобильных тестов (Android).\
+Краткий список интересных фактов о проекте:
+- [x] Использование `Faker` для генерации данных
+- [x] Использование `Lombok` для моделей в API тестах
+- [x] Использование request/response спецификаций для API тестов
+- [x] Custom Allure listener для API requests/responses логов
+- [x] Интеграция с `Allure TestOps`
+- [x] Возможность запуска тестов напрямую из `Allure TestOps`
+- [x] Интеграция с `Jira`
+- [x] Автотесты оформлены как тестовая документация посредством аннотаций `Allure`
 
 ## :computer: Используемый стек
 
@@ -20,8 +29,7 @@
 <a href="https://www.jetbrains.com/idea/"><img width="6%" title="IntelliJ IDEA" src="media/logos/IntelijIDEA.svg"></a> 
 <a href="https://www.java.com/"><img width="6%" title="Java" src="media/logos/Java.svg"></a> 
 <a href="https://gradle.org/"><img width="6%" title="Gradle" src="media/logos/Gradle.svg"></a> 
-<a href="https://selenide.org/"><img width="6%" title="Selenide" src="media/logos/Selenide.svg"></a> 
-<a href="https://aerokube.com/selenoid/"><img width="6%" title="Selenoid" src="media/logos/Selenoid.svg"></a> 
+<a href="https://rest-assured.io/"><img width="6%" title="Rest Assured" src="media/logos/RestAssured.png"></a> 
 <a href="https://github.com/allure-framework/allure2"><img width="6%" title="Allure Report" src="media/logos/AllureReport.svg"></a> 
 <a href="https://junit.org/junit5/"><img width="6%" title="JUnit5" src="media/logos/JUnit5.svg"></a> 
 <a href="https://github.com/"><img width="6%" title="GitHub" src="media/logos/GitHub.svg"></a> 
@@ -37,10 +45,14 @@
 
 Содержание Allure-отчета:
 * Шаги теста;
-* Скриншот страницы на последнем шаге;
-* Page Source;
-* Логи браузерной консоли;
-* Видео выполнения автотеста.
+
+<a id="cases"></a>
+## Реализованные проверки
+:heavy_check_mark: Проверка создания пользователя
+:heavy_check_mark: Проверка получения информации о пользователе
+:heavy_check_mark: Проверка обновления информации о пользователе
+:heavy_check_mark: Проверка удаления пользователя
+:heavy_check_mark: Негативный тест: проверка получение сообщения об ошибке при запросе информации о несуществующем пользователе 
 
 ## :arrow_forward: Запуск автотестов
 
@@ -125,7 +137,3 @@ ${TYPETEST}
 
 ## <img width="4%" style="vertical-align:middle" title="Selenoid" src="media/logos/Selenoid.svg"> Видео примера запуска тестов в Selenoid
 
-В отчетах Allure для каждого теста прикреплён не только скриншот, но и видео прохождения теста, записанное Selenoid.
-<p align="center">
-  <img title="Видео, записанное Selenoid" src="media/video/test_result.gif">
-</p>
