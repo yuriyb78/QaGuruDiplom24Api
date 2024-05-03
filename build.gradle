@@ -73,7 +73,7 @@ task update (type: Test) {
     }
 }
 
-task detete (type: Test) {
+task delete (type: Test) {
     useJUnitPlatform {
         includeTags("DeleteUser")
     }

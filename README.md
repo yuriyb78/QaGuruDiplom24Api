@@ -39,8 +39,7 @@
 <a href="https://www.atlassian.com/ru/software/jira/"><img width="5%" title="Jira" src="media/logos/Jira.svg"></a> 
 </p>
 
-Тесты в проекте написаны на языке <code>Java</code> с использованием фреймворка для тестирования [Selenide](https://selenide.org/) и сборщика <code>Gradle</code>. <code>JUnit 5</code> задействован в качестве фреймворка модульного тестирования.
-При прогоне тестов для удалённого запуска браузеров используется [Selenoid](https://aerokube.com/selenoid/).
+Тесты в проекте написаны на языке <code>Java</code> с использованием фреймворка для тестирования [Rest Assured](https://rest-assured.io/) и сборщика <code>Gradle</code>. <code>JUnit 5</code> задействован в качестве фреймворка модульного тестирования.
 Для удаленного запуска реализована джоба в <code>Jenkins</code> с формированием Allure-отчета и отправкой результатов в <code>Telegram</code> при помощи бота. Также реализована интеграция с <code>Allure TestOps</code> и <code>Jira</code>.
 
 Содержание Allure-отчета:
@@ -51,9 +50,13 @@
 <a id="cases"></a>
 ## Реализованные проверки
 :heavy_check_mark: Проверка создания пользователя
+
 :heavy_check_mark: Проверка получения информации о пользователе
+
 :heavy_check_mark: Проверка обновления информации о пользователе
+
 :heavy_check_mark: Проверка удаления пользователя
+
 :heavy_check_mark: Негативный тест: проверка получение сообщения об ошибке при запросе информации о несуществующем пользователе 
 
 ## :arrow_forward: Запуск автотестов
@@ -78,7 +81,7 @@ clean ${TYPETEST}
     5. Delete - Проверка удаления пользователя
     6. Error - Негативный тест: проверка получение сообщения об ошибке при запросе информации о несуществующем пользователе
 
-## <img width="4%" style="vertical-align:middle" title="Jenkins" src="media/logos/Jenkins.svg"> [Сборка](https://jenkins.autotests.cloud/job/C24-yuriy_belyaev-HomeWorkUnit17/) в Jenkins
+## <img width="4%" style="vertical-align:middle" title="Jenkins" src="media/logos/Jenkins.svg"> [Сборка](https://jenkins.autotests.cloud/job/C24-yuriy_belyaev-DiplomTestAPI/) в Jenkins
 
 Для запуска сборки необходимо перейти в раздел <code>Build with parameters</code> и нажать кнопку <code>Build</code>.
 <p align="center">
@@ -129,5 +132,4 @@ clean ${TYPETEST}
 <img width="50%" title="Уведомление в Telegram" src="media/screenshots/telegram_result.png">
 </p>
 
-## <img width="4%" style="vertical-align:middle" title="Selenoid" src="media/logos/Selenoid.svg"> Видео примера запуска тестов в Selenoid
 
