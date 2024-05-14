@@ -1,7 +1,7 @@
 package steps;
 
 import models.CreateUserResponseModel;
-import models.GetUserInfoModel;
+import models.UserModel;
 
 import java.util.Map;
 
@@ -22,14 +22,14 @@ public class UserInfo {
 
         String requestEndPoint =  format("/user/%s",userName);
 
-        GetUserInfoModel response = step("Отправляю запроса информации о пользователе", () ->
+        UserModel response = step("Отправляю запроса информации о пользователе", () ->
                 given(requestSpec)
                         .when()
                         .get(requestEndPoint)
                         .then()
                         .spec(successfulResponseSpec)
                         .body(matchesJsonSchemaInClasspath("schemas/getUserInfoSchema.json"))
-                        .extract().as(GetUserInfoModel.class)
+                        .extract().as(UserModel.class)
         );
 
         values.put("responseId", response.getId());

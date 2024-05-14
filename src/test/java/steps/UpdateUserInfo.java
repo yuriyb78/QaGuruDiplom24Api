@@ -1,7 +1,7 @@
 package steps;
 
 import data.TestData;
-import models.CreateUserModel;
+import models.UserModel;
 import models.CreateUserResponseModel;
 
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import static specs.RequestSpec.successfulResponseSpec;
 public class UpdateUserInfo {
 
     TestData testData = new TestData();
-    CreateUserModel userData = new CreateUserModel();
+    UserModel userData = new UserModel();
     CreateUser createUser = new CreateUser();
 
     public Map<String, String> checkUpdateUserInfo () {
