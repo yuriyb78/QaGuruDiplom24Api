@@ -103,7 +103,7 @@ clean ${TYPETEST}
 <img title="Список тест-кейсов в отчёте Allure" src="media/screenshots/test_suite_allurereport.png">
 </p>
 
-## <img width="4%" style="vertical-align:middle" title="Allure TestOps" src="media/logos/AllureTestOps.svg"> [Интеграция](https://allure.autotests.cloud/project/4196/dashboards) с Allure TestOps
+## <img width="4%" style="vertical-align:middle" title="Allure TestOps" src="media/logos/AllureTestOps.svg"> [Интеграция](https://allure.autotests.cloud/project/4234/dashboards) с Allure TestOps
 
 На *Dashboard* в <code>Allure TestOps</code> видна статистика количества тестов: сколько из них добавлены и проходятся вручную, сколько автоматизированы. Новые тесты, а также результаты прогона приходят по интеграции при каждом запуске сборки.
 
@@ -117,7 +117,7 @@ clean ${TYPETEST}
 <img title="Результаты теста в Allure TestOps" src="media/screenshots/allure-testsops-result.png">
 </p>
 
-## <img width="4%" style="vertical-align:middle" title="Jira" src="media/logos/Jira.svg"> [Интеграция](https://jira.autotests.cloud/browse/HOMEWORK-1200) с Jira
+## <img width="4%" style="vertical-align:middle" title="Jira" src="media/logos/Jira.svg"> [Интеграция](https://jira.autotests.cloud/browse/HOMEWORK-1229) с Jira
 
 Реализована интеграция <code>Allure TestOps</code> с <code>Jira</code>, в тикете отображается, какие тест-кейсы были написаны в рамках задачи и их прогоны.
 
