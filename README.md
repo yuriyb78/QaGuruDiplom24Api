@@ -1,4 +1,4 @@
-# Проект по автоматизации тестовых сценариев для API для сайта [Petshop](https://petstore.swagger.io/)
+# Проект по автоматизации тестовых сценариев для API для сайта [Petstore](https://petstore.swagger.io/)
 
 ## :scroll: Содержание:
 
