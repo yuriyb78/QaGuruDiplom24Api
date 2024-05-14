@@ -8,14 +8,13 @@ import java.util.Map;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
-import static specs.RequestSpec.requestSpec;
-import static specs.RequestSpec.successfulResponseSpec;
+import static specs.RequestSpec.*;
 
 public class DeleteUser {
 
     CreateUser createUser = new CreateUser();
 
-    public Map<String, String> deleteUser () {
+    public Map<String, String> deleteUser() {
 
         Map<String, String> values = createUser.createUser();
         Map<String, String> responseServer = new HashMap<>();
@@ -24,18 +23,18 @@ public class DeleteUser {
 
         String requestEndPoint = format("/user/%s", userName);
 
-        CreateUserResponseModel response = step("Отправляю запрос об удалении пользователя", () ->
+        CreateUserResponseModel response = step("Отправить запрос об удалении пользователя", () ->
                 given(requestSpec)
                         .when()
                         .delete(requestEndPoint)
                         .then()
-                        .spec(successfulResponseSpec)
+                        .spec(successfulResponseCode200Spec)
                         .extract().as(CreateUserResponseModel.class)
         );
 
-        responseServer.put("userName",userName);
-        responseServer.put("code",response.getCode());
-        responseServer.put("message",response.getMessage());
+        responseServer.put("userName", userName);
+        responseServer.put("code", response.getCode());
+        responseServer.put("message", response.getMessage());
 
         return responseServer;
     }

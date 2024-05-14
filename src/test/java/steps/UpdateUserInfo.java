@@ -11,7 +11,8 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
 import static specs.RequestSpec.requestSpec;
-import static specs.RequestSpec.successfulResponseSpec;
+import static specs.RequestSpec.successfulResponseCode200Spec;
+
 
 public class UpdateUserInfo {
 
@@ -19,7 +20,7 @@ public class UpdateUserInfo {
     UserModel userData = new UserModel();
     CreateUser createUser = new CreateUser();
 
-    public Map<String, String> checkUpdateUserInfo () {
+    public Map<String, String> checkUpdateUserInfo() {
 
         Map<String, String> values = createUser.createUser();
         Map<String, String> responseServer = new HashMap<>();
@@ -32,24 +33,24 @@ public class UpdateUserInfo {
         userData.setUserStatus(values.get("userStatus"));
 
 
-        String requestEndPoint =  format("/user/%s",userData.getUsername());
+        String requestEndPoint = format("/user/%s", userData.getUsername());
 
-        step("Генерирую новый адрес электронной почты пользователя", () -> userData.setEmail(testData.emailAddress));
-        step("Генерирую новый телефон пользователя", () -> userData.setPhone(testData.phoneNumber));
+        step("Сгенерировать новый адрес электронной почты пользователя", () -> userData.setEmail(testData.emailAddress));
+        step("Сгенерировать новый телефон пользователя", () -> userData.setPhone(testData.phoneNumber));
 
-        CreateUserResponseModel response = step("Отправляю обновленные данные пользователя", () ->
+        CreateUserResponseModel response = step("Отправить обновленные данные пользователя", () ->
                 given(requestSpec)
                         .body(userData)
                         .when()
                         .put(requestEndPoint)
                         .then()
-                        .spec(successfulResponseSpec)
+                        .spec(successfulResponseCode200Spec)
                         .extract().as(CreateUserResponseModel.class)
         );
 
-        responseServer.put("id",values.get("id"));
-        responseServer.put("code",response.getCode());
-        responseServer.put("message",response.getMessage());
+        responseServer.put("id", values.get("id"));
+        responseServer.put("code", response.getCode());
+        responseServer.put("message", response.getMessage());
 
         return responseServer;
 

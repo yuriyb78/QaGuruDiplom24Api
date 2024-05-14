@@ -10,53 +10,50 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import steps.*;
 
-
+@Feature("Тесты для API на сайте https://petstore.swagger.io/")
 public class UserAccountTest extends BaseTest {
 
-    CheckUserInfo checkUserInfo = new CheckUserInfo();
+    CheckingUserInfo checkingUserInfo = new CheckingUserInfo();
     LoginConfig loginConfig = ConfigFactory.create(LoginConfig.class);
 
     @Test
-    @Feature("Тесты для API на сайте https://petstore.swagger.io/")
     @DisplayName("Проверка успешного создания пользователя")
     @Tag("CreateUser")
-    void checkCreateUserTest () {
-        new CheckCreateUser().checkCreateUser();
+    void checkCreateUserTest() {
+        new CheckingCreateUser().checkCreateUser();
 
     }
 
     @Test
-    @Feature("Тесты для API на сайте https://petstore.swagger.io/")
     @DisplayName("Проверка получения информации о пользователе")
     @Tag("CheckUserInfo")
-    void checkGetUserInfoTest () {
-        checkUserInfo.checkUserInfo();
+    void checkGetUserInfoTest() {
+        checkingUserInfo.checkUserInfo();
 
     }
 
     @Test
-    @Feature("Тесты для API на сайте https://petstore.swagger.io/")
     @DisplayName("Проверка обновления информации о пользователе")
     @Tag("UpdateUserInfo")
-    void checkUpdateUserInfo () {
-        new CheckUpdateUser().checkUpdateUserInfo();
+    void checkUpdateUserInfo() {
+        new CheckingUpdateUser().checkUpdateUserInfo();
 
     }
 
     @Test
-    @Feature("Тесты для API на сайте https://petstore.swagger.io/")
     @DisplayName("Проверка удаления пользователя")
     @Tag("DeleteUser")
-    void checkDeleteUser () {
-        new CheckDeleteUser().checkDeleteUser();
+    void checkDeleteUser() {
+        new CheckingDeleteUser().checkDeleteUser();
 
     }
+
     @Test
     @Feature("Тесты для API на сайте https://petstore.swagger.io/")
     @DisplayName("Негативный тест. Проверка сообщения об ошибке при поиске несуществующего пользователя")
     @Tag("CheckErrorMessage")
-    void checkMessageUserNotFound () {
-        checkUserInfo.checkErrorMessage(loginConfig.userName());
+    void checkMessageUserNotFound() {
+        checkingUserInfo.checkErrorMessage(loginConfig.userName());
 
     }
 

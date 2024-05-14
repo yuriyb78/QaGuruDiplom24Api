@@ -14,20 +14,18 @@ public class RequestSpec {
 
     public static RequestSpecification requestSpec = with()
             .filter(withCustomTemplates())
-            .log().uri()
-            .log().headers()
-            .log().method()
-            .contentType(JSON)
-            .log().body();
+            .log().all()
+            .contentType(JSON);
 
-    public static ResponseSpecification successfulResponseSpec = new ResponseSpecBuilder()
+    public static ResponseSpecification successfulResponseCode200Spec = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .log(STATUS)
             .log(BODY)
             .build();
 
-    public static ResponseSpecification errorResponseSpec = new ResponseSpecBuilder()
+    public static ResponseSpecification errorResponseCode404Spec = new ResponseSpecBuilder()
             .expectStatusCode(404)
             .log(STATUS)
+            .log(BODY)
             .build();
 }
