@@ -49,7 +49,6 @@ public class UserAccountTest extends BaseTest {
     }
 
     @Test
-    @Feature("Тесты для API на сайте https://petstore.swagger.io/")
     @DisplayName("Негативный тест. Проверка сообщения об ошибке при поиске несуществующего пользователя")
     @Tag("CheckErrorMessage")
     void checkMessageUserNotFound() {
