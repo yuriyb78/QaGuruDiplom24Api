@@ -18,8 +18,8 @@ public class CheckingDeleteUser {
         String code = values.get("code");
         String message = values.get("message");
 
-        step("Проверить получения кода 200", () -> assertThat(code).isEqualTo("200"));
-        step("Проверить получения идентификатора пользователя", () -> assertThat(message).isEqualTo(userName));
+        step("Проверить получение кода 200", () -> assertThat(code).isEqualTo("200"));
+        step("Проверить получение идентификатора пользователя", () -> assertThat(message).isEqualTo(userName));
 
         checkingUserInfo.checkErrorMessage(userName);
     }

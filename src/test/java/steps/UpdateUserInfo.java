@@ -32,7 +32,6 @@ public class UpdateUserInfo {
         userData.setPassword(values.get("password"));
         userData.setUserStatus(values.get("userStatus"));
 
-
         String requestEndPoint = format("/user/%s", userData.getUsername());
 
         step("Сгенерировать новый адрес электронной почты пользователя", () -> userData.setEmail(testData.emailAddress));
